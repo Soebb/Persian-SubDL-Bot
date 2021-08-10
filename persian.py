@@ -85,7 +85,7 @@ async def loader(bot, message):
     print(link)
     bypasser = lk21.Bypass()
     url = bypasser.bypass_url(link)
-    dl_path = download_file(url, dirs)
+    dl_path = str(download_file(url, dirs))
     try:
         await message.reply_document(
             document=dl_path,
