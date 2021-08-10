@@ -1,7 +1,7 @@
 {
   "name": "bot",
   "env": {
-    "TOKEN": {
+    "BOT_TOKEN": {
       "description": "Enter bot token.",
       "value": ""
     },
@@ -15,9 +15,6 @@
     }
   },
   "buildpacks": [
-    {
-      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-    },
     {
       "url": "heroku/python"
     }
