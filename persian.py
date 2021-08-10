@@ -42,9 +42,10 @@ xbot = Client(
 
 START_MSG = """
 سلام
-من ربات جستجوگر و دانلودر زیرنویس فارسی‌ام
-:اسم یک فیلم رو به شیوه ی زیر بفرستید
+به ربات جستجوگر و دانلودر زیرنویس فارسی‌ خوش آمدید.
+اسم یک فیلم رو به شیوه ی زیر بفرستید:
 A savage nature 2020
+
 Fast and furious 9 2021
 """
 
@@ -54,7 +55,7 @@ async def start(bot, message):
 
 @xbot.on_message(filters.text & filters.private)
 async def loader(bot, message):
-    dirs = './downloads/'
+    dirs = f"downloads/d/"
     if not os.path.isdir(dirs):
         os.mkdir(dirs)
     m = message.text
