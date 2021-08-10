@@ -25,19 +25,15 @@ async def subdl(bot, message):
     try:
         LINK = BeautifulSoup(REQ, 'html.parser').find_all(title=f"{message.text}")
         ASLI = LINK[0]
+        LINKPAGE = ASLI.get('href')
+        REQ2 = requests.get(LINKPAGE).text
+        DOWNLOADLIST = BeautifulSoup(REQ2, 'html.parser').find_all(class_="new-link-3")
+        LINKSss = []
+        for DOWNLOAD in DOWNLOADLIST:
+            bs = BeautifulSoup(f'{DOWNLOAD}', 'html.parser').find_all('a')
+            subs = LINKSss.append(bs[0].get("href"))
+            await message.reply(f"{subs}")
     except:
         await message.reply("Sorry i cant find it plz choose number of these")
-
-    LINK = BeautifulSoup(REQ, 'html.parser').find_all(title=message.text)
-    LINKPAGE = ASLI.get('href')
-    REQ2 = requests.get(LINKPAGE).text
-    DOWNLOADLIST = BeautifulSoup(REQ2, 'html.parser').find_all(class_="new-link-3")
-    LINKSss = []
-    for DOWNLOAD in DOWNLOADLIST:
-        bs = BeautifulSoup(f'{DOWNLOAD}', 'html.parser').find_all('a')
-        subs = LINKSss.append(bs[0].get("href"))
-        await message.reply(f"{subs}")
-        
-
 
 bot.run()
