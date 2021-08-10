@@ -6,7 +6,6 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from PIL import Image
 
 # Configs
 API_HASH = os.environ['API_HASH'] # Api hash
@@ -41,9 +40,11 @@ xbot = Client(
 
 
 START_MSG = """
-سلام
+؛سلام
 به ربات جستجوگر و دانلودر زیرنویس فارسی‌ خوش آمدید.
-اسم یک فیلم رو به شیوه ی زیر بفرستید:
+
+اسم یک فیلم رو به روش زیر بفرستید:
+
 A savage nature 2020
 
 Fast and furious 9 2021
@@ -55,9 +56,9 @@ async def start(bot, message):
 
 @xbot.on_message(filters.text & filters.private)
 async def loader(bot, message):
-    dirs = f"downloads/d/"
+    dirs = f"downloads/sub/"
     if not os.path.isdir(dirs):
-        os.mkdir(dirs)
+        os.makedirs(dirs)
     m = message.text
     if ' ' in m:
         l = m.split(' ')
@@ -88,6 +89,7 @@ async def loader(bot, message):
     try:
         await message.reply_document(
             document=dl_path,
+            caption=f"{message.text}",
             quote=True)
         os.remove(dl_path)
     except Exception as e:
