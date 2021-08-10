@@ -1,5 +1,4 @@
 Pyrogram
 TgCrypto
 urllib3
-requests
 wget
