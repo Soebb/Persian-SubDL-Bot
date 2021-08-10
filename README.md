@@ -1,5 +1,9 @@
 # persian_subdl
 this script can download all persian subtitles from  world subtitle.info
+
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 <h2>
   for use this script you should
 </h2>
