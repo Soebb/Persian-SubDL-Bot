@@ -21,18 +21,11 @@ async def start(bot, message):
 
 @bot.on_message(filters.private)
 async def subdl(bot, message):
-    REQ = requests.get("https://worldsubtitle.info/?s={0}".format(message.text)).text
+    REQ = requests.get(f"https://worldsubtitle.site/movies/{message.text}")
     try:
-        LINK = BeautifulSoup(REQ, 'html.parser').find_all(title=f"{message.text}")
-        ASLI = LINK[0]
-        LINKPAGE = ASLI.get('href')
-        REQ2 = requests.get(LINKPAGE).text
-        DOWNLOADLIST = BeautifulSoup(REQ2, 'html.parser').find_all(class_="new-link-3")
-        LINKSss = []
-        for DOWNLOAD in DOWNLOADLIST:
-            bs = BeautifulSoup(f'{DOWNLOAD}', 'html.parser').find_all('a')
-            subs = LINKSss.append(bs[0].get("href"))
-            await message.reply(f"{subs}")
+        LINK = BeautifulSoup(REQ, 'html.parser').find_all('a')
+        print(LINK)
+        await message.reply(f"{LINK}")
     except Exception as e:
         print(e)
         await message.reply("Sorry i cant find it plz choose number of these")
