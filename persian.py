@@ -33,7 +33,8 @@ async def subdl(bot, message):
             bs = BeautifulSoup(f'{DOWNLOAD}', 'html.parser').find_all('a')
             subs = LINKSss.append(bs[0].get("href"))
             await message.reply(f"{subs}")
-    except:
+    except Exception as e:
+        print(e)
         await message.reply("Sorry i cant find it plz choose number of these")
 
 bot.run()
