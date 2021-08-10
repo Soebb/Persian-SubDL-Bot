@@ -78,7 +78,7 @@ async def loader(bot, message):
             Y = m.split(None, 8)[8]
     else:
         await message.reply("سال تولید اثر رو وارد نکردی")
-    N = m.text.replace(" ", "-")
+    N = message.text.replace(" ", "-")
     link = f'https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip'
     bypasser = lk21.Bypass()
     url = bypasser.bypass_url(link)
