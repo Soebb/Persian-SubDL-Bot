@@ -88,7 +88,7 @@ async def loader(bot, message):
             document=dl_path,
             quote=True)
         os.remove(dl_path)
-    else:
+    except:
         await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
     
 
