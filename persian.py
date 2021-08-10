@@ -1,33 +1,10 @@
-import os, lk21, time, requests, math
-from urllib.parse import unquote
-from pySmartDL import SmartDL
-from urllib.error import HTTPError
+import os, time, requests, math
+import wget
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser
 
-# Configs
 API_HASH = os.environ['API_HASH'] # Api hash
 APP_ID = int(os.environ['APP_ID']) # Api id/App id
 BOT_TOKEN = os.environ['BOT_TOKEN'] # Bot token
-
-
-# https://github.com/viperadnan-git/google-drive-telegram-bot/blob/main/bot/helpers/downloader.py
-def download_file(url, dl_path):
-  try:
-    dl = SmartDL(url, dl_path, progress_bar=False)
-    dl.start()
-    filename = dl.get_dest()
-    if '+' in filename:
-          xfile = filename.replace('+', ' ')
-          filename2 = unquote(xfile)
-    else:
-        filename2 = unquote(filename)
-    os.rename(filename, filename2)
-    return True, filename2
-  except HTTPError as error:
-    return False, error
 
 
 # Running bot
@@ -56,9 +33,6 @@ async def start(bot, message):
 
 @xbot.on_message(filters.text & filters.private)
 async def loader(bot, message):
-    dirs = f"downloads/sub/"
-    if not os.path.isdir(dirs):
-        os.makedirs(dirs)
     m = message.text
     if ' ' in m:
         l = m.split(' ')
@@ -82,16 +56,13 @@ async def loader(bot, message):
         await message.reply("سال تولید اثر رو وارد نکردی")
     N = message.text.replace(" ", "-")
     link = f'https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip'
-    print(link)
-    bypasser = lk21.Bypass()
-    url = bypasser.bypass_url(link)
-    dl_path = str(download_file(url, dirs))
+    file = wget.download(link)
     try:
         await message.reply_document(
-            document=dl_path,
+            document=file,
             caption=f"{message.text}",
             quote=True)
-        os.remove(dl_path)
+        os.remove(file)
     except Exception as e:
         print(e)
         await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
