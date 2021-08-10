@@ -49,7 +49,7 @@ Fast and furious 9 2021
 """
 
 @xbot.on_message(filters.command('start') & filters.private)
-async def start(bot, update):
+async def start(bot, message):
     await message.reply(START_MSG)
 
 @xbot.on_message(filters.text & filters.private)
