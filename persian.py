@@ -23,7 +23,7 @@ async def start(bot, message):
 async def subdl(bot, message):
     REQ = requests.get("https://worldsubtitle.info/?s={0}".format(message.text)).text
     try:
-        LINK = BeautifulSoup(REQ, 'html.parser').find_all(title=message.text)
+        LINK = BeautifulSoup(REQ, 'html.parser').find_all(title=f"{message.text}")
         ASLI = LINK[0]
     except:
         await message.reply("Sorry i cant find it plz choose number of these")
