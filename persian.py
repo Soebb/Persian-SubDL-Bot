@@ -80,6 +80,7 @@ async def loader(bot, message):
         await message.reply("سال تولید اثر رو وارد نکردی")
     N = message.text.replace(" ", "-")
     link = f'https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip'
+    print(link)
     bypasser = lk21.Bypass()
     url = bypasser.bypass_url(link)
     dl_path = download_file(url, dirs)
@@ -88,7 +89,8 @@ async def loader(bot, message):
             document=dl_path,
             quote=True)
         os.remove(dl_path)
-    except:
+    except Exception as e:
+        print(e)
         await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
     
 
