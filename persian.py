@@ -1,6 +1,7 @@
-import os, time, requests, math
+import os, time, math
 import wget
 from pyrogram import Client, filters
+from urllib.error import HTTPError
 
 API_HASH = os.environ['API_HASH'] # Api hash
 APP_ID = int(os.environ['APP_ID']) # Api id/App id
@@ -55,14 +56,16 @@ async def loader(bot, message):
     else:
         await message.reply("سال تولید اثر رو وارد نکردی")
     N = message.text.replace(" ", "-")
-    link = f'https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip'
+    link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
     file = wget.download(link)
     try:
+        file = wget.download(link)
         await message.reply_document(
             document=file,
-            caption=f"{message.text}",
-            quote=True)
+            caption=f"{message.text}")
         os.remove(file)
+    except HTTPError as h:
+        print(h)
     except Exception as e:
         print(e)
         await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
