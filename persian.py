@@ -1,5 +1,5 @@
 import os, time, math
-import wget
+import i
 from pyrogram import Client, filters
 from urllib.error import HTTPError
 
@@ -54,18 +54,17 @@ async def loader(bot, message):
         elif len(l) == 9:
             Y = m.split(None, 8)[8]
     else:
-        await message.reply("سال تولید اثر رو وارد نکردی")
+        await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
     N = message.text.replace(" ", "-")
     link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
-    file = wget.download(link)
+    
+    r = requests.get(url, allow_redirects=True)
+    open(dirs, 'wb').write(r.content)
     try:
-        file = wget.download(link)
         await message.reply_document(
             document=file,
             caption=f"{message.text}")
         os.remove(file)
-    except HTTPError as h:
-        print(h)
     except Exception as e:
         print(e)
         await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
