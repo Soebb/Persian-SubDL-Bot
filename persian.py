@@ -55,7 +55,7 @@ async def loader(bot, message):
             Y = m.split(None, 7)[7]
         elif len(l) == 9:
             Y = m.split(None, 8)[8]
-    if not "20" or "19" in m:
+    if not "20" in m:
         await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
     if not m.startswith("And") or m.startswith("Of") or m.startswith("The") or m.startswith("With"):
         N = message.text.replace(" ", ".").replace("And", "and").replace("Of", "of").replace("With", "with").replace("The", "the") 
