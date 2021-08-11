@@ -1,6 +1,7 @@
 import os, math
 import wget
 import lk21
+import urllib.request
 from urllib.error import HTTPError
 from pyrogram import Client, filters
 
@@ -64,14 +65,17 @@ async def loader(bot, message):
     else:
         N = message.text.replace(" ", ".")
     link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
+    dirs = f'dl/'
+    if not os.path.isdir(dirs):
+        os.makedirs(dirs)
+    dldir = f'{dirs}{N}.zip'
+    with urllib.request.urlopen(link) as dl_file:
+        with open(dldir, 'wb') as out_file:
+            out_file.write(dl_file.read())
     try:
-        bypasser = lk21.Bypass()
-        url = bypasser.bypass_url(link)
-        file = wget.download(url)
         await message.reply_document(
             document=file,
             caption=f"{message.text} زیرنویس فارسی فیلم")
-        os.remove(file)
     except HTTPError as e:
         print(e)
         await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
