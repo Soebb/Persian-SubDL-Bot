@@ -2,5 +2,4 @@ Pyrogram
 TgCrypto
 requests
 lk21
-zipfile
 urllib3
