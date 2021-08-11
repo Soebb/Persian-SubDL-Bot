@@ -57,7 +57,7 @@ async def loader(bot, message):
         await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
     N = message.text.replace(" ", "-")
     link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
-    dirs = f'./dl/{message.from_user.id}/'
+    dirs = f'./dl/{N}/'
     if not os.path.isdir(dirs):
         os.makedirs(dirs)
     dldir = f'{dirs}{N}.zip'
