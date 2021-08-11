@@ -1,4 +1,4 @@
 Pyrogram
 TgCrypto
-urllib3
-wget
+requests
+lk21
