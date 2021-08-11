@@ -60,14 +60,14 @@ async def loader(bot, message):
     dirs = f'./dl/{N}/'
     if not os.path.isdir(dirs):
         os.makedirs(dirs)
-    dldir = f'{dirs}{N}.zip'
+    dldir = f'{dirs}{N}'
     bypasser = lk21.Bypass()
     url = bypasser.bypass_url(link)
     r = requests.get(url, allow_redirects=True)
     open(dldir, 'wb').write(r.content)
     try:
         await message.reply_document(
-            document=dldir,
+            document=open(dldir, 'rb'),
             caption=f"{message.text}")
     except Exception as e:
         print(e)
