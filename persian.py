@@ -1,4 +1,6 @@
 import os, math
+import wget
+from urllib.error import HTTPError
 from pyrogram import Client, filters
 
 API_HASH = os.environ['API_HASH'] # Api hash
@@ -61,7 +63,17 @@ async def loader(bot, message):
     else:
         N = message.text.replace(" ", ".")
     link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
-    await message.reply(link)
+    try:
+        file = wget.download(link)
+        await message.reply_document(
+            document=file,
+            caption=f"{message.text} زیرنویس فارسی فیلم")
+        os.remove(file)
+    except HTTPError as e:
+        print(e)
+        await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
+    
+   
     
 
 
