@@ -56,9 +56,8 @@ async def loader(bot, message):
             Y = m.split(None, 8)[8]
     else:
         await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
-    if "And" or "Of" or "The" in m:
-        if not m.startswith("And") or m.startswith("Of") or m.startswith("The"):
-            N = message.text.replace(" ", ".").message.text.replace("And", "and").message.text.replace("Of", "of").message.text.replace("The", "the") 
+    if not m.startswith("And") or m.startswith("Of") or m.startswith("The"):
+        N = message.text.replace(" ", ".").replace("And", "and").replace("Of", "of").replace("The", "the") 
     else:
         N = message.text.replace(" ", ".")
     link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
