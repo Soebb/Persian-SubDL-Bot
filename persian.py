@@ -56,7 +56,7 @@ async def loader(bot, message):
             Y = m.split(None, 8)[8]
     else:
         await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
-    N = message.text.replace(" ", "-")
+    N = message.text.replace(" ", ".")
     link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
     await message.reply(link)
     
