@@ -57,10 +57,10 @@ async def loader(bot, message):
         await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
     N = message.text.replace(" ", "-")
     link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
-    dirs = f'./dl/{N}/'
+    dirs = f'dl/'
     if not os.path.isdir(dirs):
         os.makedirs(dirs)
-    dldir = f'{dirs}{N}'
+    dldir = f'{dirs}{N}.zip'
     bypasser = lk21.Bypass()
     url = bypasser.bypass_url(link)
     r = requests.get(url, allow_redirects=True)
