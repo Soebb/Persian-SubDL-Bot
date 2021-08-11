@@ -1,6 +1,7 @@
 import os, time, math
 import lk21
 import requests
+import urllib.request
 from pyrogram import Client, filters
 
 API_HASH = os.environ['API_HASH'] # Api hash
@@ -56,19 +57,16 @@ async def loader(bot, message):
     else:
         await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
     N = message.text.replace(" ", "-")
-    link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
+    link = f'https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip'
     dirs = f'dl/'
     if not os.path.isdir(dirs):
         os.makedirs(dirs)
     dldir = f'{dirs}{N}.zip'
     bypasser = lk21.Bypass()
     url = bypasser.bypass_url(link)
-    response = requests.get(link, stream=True)
-    handle = open(dldir, "wb")
-    for chunk in response.iter_content(chunk_size=1024):
-        if chunk:  # filter out keep-alive new chunks
-            handle.write(chunk)
-    handle.close()
+    with urllib.request.urlopen(link) as dl_file:
+        with open(dldir, 'wb') as out_file:
+            out_file.write(dl_file.read())
     try:
         await message.reply_document(
             document=dldir,
