@@ -74,7 +74,7 @@ async def loader(bot, message):
             out_file.write(dl_file.read())
     try:
         await message.reply_document(
-            document=file,
+            document=dldir,
             caption=f"{message.text} زیرنویس فارسی فیلم")
     except HTTPError as e:
         print(e)
