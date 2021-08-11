@@ -1,7 +1,5 @@
 import os, math
-import wget
-import lk21
-import urllib.request
+import requests
 from urllib.error import HTTPError
 from pyrogram import Client, filters
 
@@ -69,9 +67,8 @@ async def loader(bot, message):
     if not os.path.isdir(dirs):
         os.makedirs(dirs)
     dldir = f'{dirs}{N}.zip'
-    with urllib.request.urlopen(link) as dl_file:
-        with open(dldir, 'wb') as out_file:
-            out_file.write(dl_file.read())
+    r = requests.get(url, allow_redirects=True, headers={'User-Agent': 'Mozilla/5.0'})
+    open(dldir, 'wb').write(r.content)
     try:
         await message.reply_document(
             document=dldir,
