@@ -60,7 +60,7 @@ async def loader(bot, message):
     dirs = f'./dl/{message.from_user.id}/'
     if not os.path.isdir(dirs):
         os.makedirs(dirs)
-    dldir = f'{dirs}{N}'
+    dldir = f'{dirs}{N}.zip'
     bypasser = lk21.Bypass()
     url = bypasser.bypass_url(link)
     r = requests.get(url, allow_redirects=True)
