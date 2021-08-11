@@ -1,5 +1,6 @@
 import os, math
 import wget
+import lk21
 from urllib.error import HTTPError
 from pyrogram import Client, filters
 
@@ -64,7 +65,9 @@ async def loader(bot, message):
         N = message.text.replace(" ", ".")
     link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
     try:
-        file = wget.download(link)
+        bypasser = lk21.Bypass()
+        url = bypasser.bypass_url(link)
+        file = wget.download(url)
         await message.reply_document(
             document=file,
             caption=f"{message.text} زیرنویس فارسی فیلم")
