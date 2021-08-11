@@ -1,6 +1,5 @@
 import os, math
 import requests
-from urllib.error import HTTPError
 from pyrogram import Client, filters
 
 API_HASH = os.environ['API_HASH'] # Api hash
@@ -56,9 +55,9 @@ async def loader(bot, message):
             Y = m.split(None, 7)[7]
         elif len(l) == 9:
             Y = m.split(None, 8)[8]
-    if not ' ' or "20" or "19" in m:
+    if not ' ' or not "20" or not "19" in m:
         await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
-    if not m.startswith("And") or m.startswith("Of") or m.startswith("The"):
+    if not m.startswith("And") or not m.startswith("Of") or not m.startswith("The"):
         N = message.text.replace(" ", ".").replace("And", "and").replace("Of", "of").replace("The", "the") 
     else:
         N = message.text.replace(" ", ".")
