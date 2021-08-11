@@ -1,7 +1,7 @@
 import os, time, math
-import i
+import lk21
+import requests
 from pyrogram import Client, filters
-from urllib.error import HTTPError
 
 API_HASH = os.environ['API_HASH'] # Api hash
 APP_ID = int(os.environ['APP_ID']) # Api id/App id
@@ -57,14 +57,18 @@ async def loader(bot, message):
         await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
     N = message.text.replace(" ", "-")
     link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
-    
+    dirs = f"downloads/sub/"
+    if not os.path.isdir(dirs):
+        os.makedirs(dirs)
+    bypasser = lk21.Bypass()
+    url = bypasser.bypass_url(link)
     r = requests.get(url, allow_redirects=True)
     open(dirs, 'wb').write(r.content)
     try:
         await message.reply_document(
-            document=file,
+            document=dirs,
             caption=f"{message.text}")
-        os.remove(file)
+        os.remove(dirs)
     except Exception as e:
         print(e)
         await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
