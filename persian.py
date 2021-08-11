@@ -1,7 +1,4 @@
-import os, time, math
-import lk21
-import requests
-import urllib.request
+import os, math
 from pyrogram import Client, filters
 
 API_HASH = os.environ['API_HASH'] # Api hash
@@ -19,14 +16,17 @@ xbot = Client(
 
 
 START_MSG = """
-؛سلام
+سلام؛
 به ربات جستجوگر و دانلودر زیرنویس فارسی‌ خوش آمدید.
 
 اسم یک فیلم رو به روش زیر بفرستید:
 
-A savage nature 2020
+A Savage Nature 2020
 
-Fast and furious 9 2021
+Fast And Furious 9 2021
+
+نکته:
+حروف اول کلمات را بزرگ بنویسید.
 """
 
 @xbot.on_message(filters.command('start') & filters.private)
