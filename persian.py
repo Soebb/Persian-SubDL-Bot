@@ -56,7 +56,7 @@ async def loader(bot, message):
             Y = m.split(None, 7)[7]
         elif len(l) == 9:
             Y = m.split(None, 8)[8]
-    if (not ' ' in m) or (not "20" or "19" in Y):
+    if not ' ' or "20" or "19" in m:
         await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
     if not m.startswith("And") or m.startswith("Of") or m.startswith("The"):
         N = message.text.replace(" ", ".").replace("And", "and").replace("Of", "of").replace("The", "the") 
@@ -68,17 +68,13 @@ async def loader(bot, message):
         os.makedirs(dirs)
     dldir = f'{dirs}{N}.zip'
     r = requests.get(link, allow_redirects=True, headers={'User-Agent': 'Mozilla/5.0'})
-    open(dldir, 'wb').write(r.content)
-    try:
+    if r.status_code == 200:
+        open(dldir, 'wb').write(r.content)
         await message.reply_document(
             document=dldir,
             caption=f"{message.text} زیرنویس فارسی فیلم")
-    except HTTPError as e:
-        print(e)
+    else:
         await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
-    
-   
-    
 
 
 xbot.run()
