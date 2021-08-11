@@ -63,11 +63,15 @@ async def loader(bot, message):
     dldir = f'{dirs}{N}.zip'
     bypasser = lk21.Bypass()
     url = bypasser.bypass_url(link)
-    r = requests.get(url, allow_redirects=True)
-    open(dldir, 'wb').write(r.content)
+    response = requests.get(url, stream=True)
+    handle = open(dldir, "wb")
+    for chunk in response.iter_content(chunk_size=1024):
+        if chunk:  # filter out keep-alive new chunks
+            handle.write(chunk)
+    handle.close()
     try:
         await message.reply_document(
-            document=open(dldir, 'rb'),
+            document=dldir,
             caption=f"{message.text}")
     except Exception as e:
         print(e)
