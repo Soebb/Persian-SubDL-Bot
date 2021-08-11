@@ -57,23 +57,8 @@ async def loader(bot, message):
     else:
         await message.reply("فک کنم سال ساخت فیلم رو وارد نکردی")
     N = message.text.replace(" ", "-")
-    link = f'https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip'
-    dirs = f'dl/'
-    if not os.path.isdir(dirs):
-        os.makedirs(dirs)
-    dldir = f'{dirs}{N}.zip'
-    bypasser = lk21.Bypass()
-    url = bypasser.bypass_url(link)
-    with urllib.request.urlopen(link) as dl_file:
-        with open(dldir, 'wb') as out_file:
-            out_file.write(dl_file.read())
-    try:
-        await message.reply_document(
-            document=dldir,
-            caption=f"{message.text}")
-    except Exception as e:
-        print(e)
-        await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
+    link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
+    await message.reply(link)
     
 
 
