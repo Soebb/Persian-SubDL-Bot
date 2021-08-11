@@ -67,7 +67,7 @@ async def loader(bot, message):
     if not os.path.isdir(dirs):
         os.makedirs(dirs)
     dldir = f'{dirs}{N}.zip'
-    r = requests.get(url, allow_redirects=True, headers={'User-Agent': 'Mozilla/5.0'})
+    r = requests.get(link, allow_redirects=True, headers={'User-Agent': 'Mozilla/5.0'})
     open(dldir, 'wb').write(r.content)
     try:
         await message.reply_document(
