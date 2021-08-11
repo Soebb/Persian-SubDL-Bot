@@ -63,7 +63,7 @@ async def loader(bot, message):
     dldir = f'{dirs}{N}.zip'
     bypasser = lk21.Bypass()
     url = bypasser.bypass_url(link)
-    response = requests.get(url, stream=True)
+    response = requests.get(link, stream=True)
     handle = open(dldir, "wb")
     for chunk in response.iter_content(chunk_size=1024):
         if chunk:  # filter out keep-alive new chunks
