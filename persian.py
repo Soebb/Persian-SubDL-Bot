@@ -68,10 +68,10 @@ async def loader(bot, message):
     dldir = f'{dirs}{N}.zip'
     r = requests.get(link, allow_redirects=True, headers={'User-Agent': 'Mozilla/5.0'})
     if r.status_code == 200:
-        open(dldir, 'wb').write(r.content)
-        await message.reply_document(
-            document=dldir,
-            caption=f"{message.text} زیرنویس فارسی فیلم")
+        f = open(dldir, 'wb')
+        f.write(r.content)
+        f.close
+        await message.reply_document(document=dldir, caption=f"{message.text} زیرنویس فارسی فیلم")
     else:
         await message.reply("متاسفانه چنین زیرنویسی در سایت موجود نیست")
 
