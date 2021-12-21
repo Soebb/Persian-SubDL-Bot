@@ -38,8 +38,7 @@ async def loader(bot, message):
     title = ''
     for i in range(len(splited)):
         s = splited[-1+i]
-        title += s[:1].upper() + s[1:len(s)].lower() + '.' if not 
-
+        title += s[:1].upper() + s[1:len(s)].lower() + '.' if i != len(splited) else ''
     year = message.text.split()[-1]
     if not year.__contains__("20") and not year.__contains__("19"):
         await message.reply("سال ساخت فیلم رو وارد نکردی")
