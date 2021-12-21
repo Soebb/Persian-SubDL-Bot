@@ -3,7 +3,7 @@ import requests
 from pyrogram import Client, filters
 
 API_HASH = os.environ['API_HASH'] # Api hash
-API_ID = int(os.environ['API_ID']) # Api id/App id
+API_ID = os.environ['API_ID'] # Api id/App id
 BOT_TOKEN = os.environ['BOT_TOKEN'] # Bot token
 
 
@@ -34,10 +34,10 @@ async def start(bot, message):
 
 @xbot.on_message(filters.text & filters.private)
 async def loader(bot, message):
-    text = message.text
-    
-
-    year = text.split()[-1]
+    title_splited = message.text.split()[:-1]
+    for i in range(len(title_splited)):
+        
+    year = message.text.split()[-1]
     if not year.__contains__("20") and not year.__contains__("19"):
         await message.reply("سال ساخت فیلم رو وارد نکردی")
     if not title.startswith("And") or title.startswith("Of") or title.startswith("The") or title.startswith("With"):
