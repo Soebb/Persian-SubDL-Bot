@@ -34,32 +34,16 @@ async def start(bot, message):
 
 @xbot.on_message(filters.text & filters.private)
 async def loader(bot, message):
-    m = message.text
-    if ' ' in m:
-        l = m.split(' ')
-        if len(l) == 2:
-            Y = m.split(None, 1)[1]
-        elif len(l) == 3:
-            Y = m.split(None, 2)[2]
-        elif len(l) == 4:
-            Y = m.split(None, 3)[3]
-        elif len(l) == 5:
-            Y = m.split(None, 4)[4]
-        elif len(l) == 6:
-            Y = m.split(None, 5)[5]
-        elif len(l) == 7:
-            Y = m.split(None, 6)[6]
-        elif len(l) == 8:
-            Y = m.split(None, 7)[7]
-        elif len(l) == 9:
-            Y = m.split(None, 8)[8]
-    if not m.__contains__("20") and not m.__contains__("19"):
+    text = message.text
+    
+
+    year = text.split()[-1]
+    if not year.__contains__("20") and not year.__contains__("19"):
         await message.reply("سال ساخت فیلم رو وارد نکردی")
-    if not m.startswith("And") or m.startswith("Of") or m.startswith("The") or m.startswith("With"):
-        N = message.text.replace(" ", ".").replace("And", "and").replace("Of", "of").replace("With", "with").replace("The", "the") 
-    else:
-        N = message.text.replace(" ", ".")
-    link = f"https://dl.worldsubtitle.site/wrpink/Movies/{Y}/{N}_WorldSubtitle.zip"
+    if not title.startswith("And") or title.startswith("Of") or title.startswith("The") or title.startswith("With"):
+        title = title.replace("And", "and").replace("Of", "of").replace("With", "with").replace("The", "the") 
+    
+    link = f"https://dl.worldsubtitle.site/wrpink/Movies/{year}/{title}_WorldSubtitle.zip"
     dirs = f'dl/'
     if not os.path.isdir(dirs):
         os.makedirs(dirs)
