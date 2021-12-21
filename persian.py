@@ -34,9 +34,11 @@ async def start(bot, message):
 
 @xbot.on_message(filters.text & filters.private)
 async def loader(bot, message):
-    title_splited = message.text.split()[:-1]
-    for i in range(len(title_splited)):
-        
+    splited = message.text.split()[:-1]
+    title = ''
+    for i in range(len(splited)):
+        title += splited[-1+i][:1]. + 
+
     year = message.text.split()[-1]
     if not year.__contains__("20") and not year.__contains__("19"):
         await message.reply("سال ساخت فیلم رو وارد نکردی")
