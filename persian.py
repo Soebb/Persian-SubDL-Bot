@@ -3,14 +3,14 @@ import requests
 from pyrogram import Client, filters
 
 API_HASH = os.environ['API_HASH'] # Api hash
-APP_ID = int(os.environ['APP_ID']) # Api id/App id
+API_ID = int(os.environ['API_ID']) # Api id/App id
 BOT_TOKEN = os.environ['BOT_TOKEN'] # Bot token
 
 
 # Running bot
 xbot = Client(
     'PersianSubBot',
-    api_id=APP_ID,
+    api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN
 )
@@ -26,8 +26,6 @@ A Savage Nature 2020
 
 Fast And Furious 9 2021
 
-نکته:
-حروف اول کلمات را بزرگ بنویسید.
 """
 
 @xbot.on_message(filters.command('start') & filters.private)
