@@ -37,7 +37,8 @@ async def loader(bot, message):
     splited = message.text.split()[:-1]
     title = ''
     for i in range(len(splited)):
-        title += splited[-1+i][:1]. + 
+        s = splited[-1+i]
+        title += s[:1].upper() + s[1:len(s)].lower() + '.' if not 
 
     year = message.text.split()[-1]
     if not year.__contains__("20") and not year.__contains__("19"):
