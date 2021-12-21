@@ -32,8 +32,8 @@ Fast And Furious 9 2021
 async def start(bot, message):
     await message.reply(START_MSG)
 
-@xbot.on_message(filters.text & filters.private)
-async def loader(bot, message):
+@xbot.on_message(filters.private & filters.text & ~filters.regex('/start'))
+async def subdl(bot, message):
     splited = message.text.split()[:-1]
     title = ''
     for i in range(len(splited)):
