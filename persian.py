@@ -42,8 +42,8 @@ async def subdl(bot, message):
         os.makedirs(dirs)
 
     year = message.text.split()[-1]
-    if not year.__contains__("20") and not year.__contains__("19"):
-        await message.reply("سال ساخت فیلم رو وارد نکردی")
+    if not year or (not year.__contains__("20") and not year.__contains__("19")):
+        return await message.reply("سال ساخت فیلم رو وارد نکردی")
 
     splited = message.text.split()[:-1]
     title = ''
