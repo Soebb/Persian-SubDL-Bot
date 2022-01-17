@@ -42,13 +42,13 @@ async def subdl(bot, message):
         os.makedirs(dirs)
 
     year = message.text.split()[-1]
-    if not year or (not year.__contains__("20") and not year.__contains__("19")):
+    if not year.isdigit():
         return await message.reply("سال ساخت فیلم رو وارد نکردی")
 
-    splited = message.text.split()[:-1]
+    title_splited = message.text.split()[:-1]
     title = ''
-    for i in range(len(splited)):
-        s = splited[-1+i]
+    for i in range(0, len(title_splited)):
+        s = splited[i]
         title += s[:1].upper() + s[1:len(s)].lower() + '.'
 
     if not title.startswith(("And", "Of", "The", "With")):
