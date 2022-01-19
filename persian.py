@@ -48,7 +48,7 @@ async def subdl(bot, message):
     title_splited = message.text.split()[:-1]
     title = ''
     for i in range(0, len(title_splited)):
-        s = splited[i]
+        s = title_splited[i]
         title += s[:1].upper() + s[1:len(s)].lower() + '.'
 
     if not title.startswith(("And", "Of", "The", "With")):
